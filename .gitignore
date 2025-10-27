@@ -1,20 +1,6 @@
-# Backend
-Backend/node_modules/
+.env
 
-# Frontend
-Frontend/node_modules/
+node_modules
 
-# Environment files
-*.env
-
-# Logs
-*.log
-
-# Build folders (si aplica)
-Backend/dist/
-Frontend/build/
-
-# IDE files
-.vscode/
-.idea/
-.DS_Store
+archivos/*
+!archivos/readme.md

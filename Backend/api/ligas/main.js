@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const db = require("../../conexion");
-const verificarTokenMiddleware = require("../middlewares/verificarToken");
 
-router.use(verificarTokenMiddleware);
 
 router.get("/", async function (req, res, next) {
   const id_usuario = req.user.id;

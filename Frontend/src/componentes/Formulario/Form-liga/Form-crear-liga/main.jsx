@@ -27,15 +27,13 @@ const CrearLiga = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border p-4 rounded-xl shadow-md space-y-4"
     >
-      <h2 className="text-xl font-semibold">Crear Liga</h2>
+      <h2>Crear Liga</h2>
       <input
         type="text"
         value={nombreLiga}
         onChange={(e) => setNombreLiga(e.target.value)}
         placeholder="Nombre de la liga"
-        className="w-full p-2 border rounded-md"
       />
       <button
         type="submit"

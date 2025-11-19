@@ -1,9 +1,5 @@
 const router = require('express').Router();
 const db = require('../../conexion');
-const verificarTokenMiddleware = require('../middlewares/verificarToken');
-
-router.use(verificarTokenMiddleware);
-
 
 router.get("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;

@@ -49,7 +49,7 @@ const TablaPosiciones = () => {
           {/* Escudo + nombre */}
           <div className="flex items-center gap-2">
             <img
-              src={`http://localhost:9000/escudos/${equipo.escudo}`}
+              src={`http://localhost:9000/archivos/escudos/${equipo.escudo}`}
               alt="escudo"
               className="w-8 h-8 object-cover rounded"
             />

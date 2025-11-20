@@ -1,33 +1,34 @@
-import FormPartido from "../form-partido";
-import FormLiga from "../form-liga";
-import FormEquipo from "../form-equipo";
-import FormUsuario from "../form-usuario";
+import React from "react";
 
-export default function Formularios() {
-  
+// Importar los main internos
+import Jornadas from "./Jornadas/main";
+import JornadasAdmin from "./Jornadas-Admin/main";
+import Tabla from "./Tabla";
+
+const Liga = () => {
   return (
-    <div className="Seccion p-6 space-y-8">
+    <div className="w-full p-6 flex flex-col gap-10">
 
+      {/* Jornadas para usuarios */}
       <section>
-        <h2>Gestión de Partidos</h2>
-        <FormPartido />
+        <h1 className="text-3xl font-bold mb-4">Jornadas</h1>
+        <Jornadas />
       </section>
 
-      <section >
-        <h2>Gestión de Ligas</h2>
-        <FormLiga />
-      </section>
-
+      {/* Jornadas para administradores */}
       <section>
-        <h2 >Gestión de Equipos</h2>
-        <FormEquipo />
+        <h1 className="text-3xl font-bold mb-4">Gestión de Jornadas (Admin)</h1>
+        <JornadasAdmin />
       </section>
 
-      <section >
-        <h2>Gestión de Usuarios</h2>
-        <FormUsuario />
+      {/* Tabla de posiciones */}
+      <section>
+        <h1 className="text-3xl font-bold mb-4">Tabla de Posiciones</h1>
+        <Tabla />
       </section>
 
     </div>
   );
-}
+};
+
+export default Liga;

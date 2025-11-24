@@ -1,0 +1,76 @@
+/* ============================
+   ESTILOS GENERALES PARA AMBOS HEADERS
+   ============================ */
+.top-header,
+.header-user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #2d6a2d;
+  padding: 10px 20px;
+}
+
+/* LOGO */
+.header-logo img,
+.header-user-logo img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+/* TÍTULO (solo admin) */
+.header-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+/* BOTONES / SELECTS (compartidos) */
+.header-buttons,
+.header-user-buttons {
+  display: flex;
+  gap: 25px;
+  margin-left: auto;
+}
+
+.dropdown-btn,
+.header-select,
+.header-user-select,
+.header-user-btn {
+  background: #7fbf3f;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  color: black;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown-btn:hover,
+.header-user-btn:hover,
+.header-select:hover,
+.header-user-select:hover {
+  background: #6bab36;
+}
+
+.header-select option,
+.header-user-select option {
+  background: white;
+  color: black;
+}
+
+/* ============================
+   ESPACIADO ESPECIAL PARA HEADER USUARIO
+   ============================ */
+
+.header-user {
+  justify-content: space-between; /* 👈 Lo que pediste */
+}
+
+
+
+.arrow {
+  font-size: 14px;
+  margin-left: 5px;
+}

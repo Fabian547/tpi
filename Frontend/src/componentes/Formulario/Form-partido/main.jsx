@@ -1,7 +1,7 @@
 import React from "react";
-import CrearPartido from "./Form-crear-partido";
-import CrearJornada from "./Form-crear-jornada";
-import ModificarPartido from "./Form-modificar-partido";
+import CrearPartido from "./Form-crear-partido/main";
+import CrearJornada from "./Form-crear-jornada/main";
+import ModificarPartido from "./Form-modificar-partido/main";
 
 const FormPartido = () => {
   return (

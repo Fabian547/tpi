@@ -1,8 +1,11 @@
 import "./Header.css";
 import { useEffect, useState } from "react";
-import logo from "../assets/escudo.png"; // pone tu ruta real
 
-export default function Header({ onSelectJornada, onSelectFormulario, onIrLiga }) {
+export default function HeaderAdmin({
+  onSelectJornada,
+  onSelectFormulario,
+  onSelectLiga
+}) {
   const [jornadas, setJornadas] = useState([]);
 
   useEffect(() => {
@@ -30,7 +33,6 @@ export default function Header({ onSelectJornada, onSelectFormulario, onIrLiga }
       {/* TITULO */}
       <h1 className="header-title">Liga Master</h1>
 
-      {/* BOTONES / SELECTS */}
       <div className="header-buttons">
 
         {/* SELECT JORNADAS */}
@@ -46,23 +48,28 @@ export default function Header({ onSelectJornada, onSelectFormulario, onIrLiga }
           ))}
         </select>
 
-        {/* BOTON LIGA */}
-        <button className="dropdown-btn" onClick={onIrLiga}>
+        {/* BOTÓN LIGA MAIN */}
+        <button
+          className="dropdown-btn"
+          onClick={() => onSelectLiga("liga")}
+        >
           Liga
         </button>
 
         {/* SELECT FORMULARIOS */}
         <select
           className="header-select"
-          onChange={(e) => onSelectFormulario(e.target.value)}
+          onChange={(e) => {
+            if (!e.target.value) return;
+            onSelectFormulario(e.target.value);
+          }}
         >
-          <option value="">Admin ▼</option>
+          <option value="">Formularios ▼</option>
           <option value="form-liga">Form-Liga</option>
           <option value="form-usuario">Form-Usuario</option>
           <option value="form-equipos">Form-Equipos</option>
           <option value="form-partidos">Form-Partidos</option>
         </select>
-
       </div>
     </header>
   );

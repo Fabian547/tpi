@@ -1,4 +1,3 @@
-import "./ListadoPartidosUsuario.css";
 import TarjetaPartidoUsuario from "./tarjeta";
 
 export default function ListadoPartidosUsuario({ partidos }) {

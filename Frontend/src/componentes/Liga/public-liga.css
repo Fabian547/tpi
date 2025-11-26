@@ -1,0 +1,44 @@
+.public-liga-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.public-liga-titulo {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.public-liga-lista {
+  background: #276a2d; /* fondo como en tu imagen */
+  padding: 20px;
+  border-radius: 10px;
+  width: 750px;
+  min-height: 450px;
+}
+
+.public-liga-card {
+  background: #7fbf3f; 
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.2s;
+}
+
+.public-liga-card:hover {
+  background: #6ead34;
+}
+
+.public-liga-card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.public-liga-autor {
+  margin: 0;
+  margin-top: 5px;
+  opacity: 0.8;
+  font-size: 15px;
+}

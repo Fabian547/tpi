@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ListadoPartidos from "./ListadoPartidos";
+import ListadoPartidos from "./Listado-partido";
 
 export default function Jornadas() {
 

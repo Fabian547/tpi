@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+
+import Header from "./componentes/Header/main";
+import Ligas from "./componentes/Liga/main";
+import Formulario from "./componentes/Formulario/main";
+import Login from "./componentes/Login/main";
+import Footer from "./componentes/Footer/footer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [logueado, setLogueado] = useState(false);
+  const [rol, setRol] = useState("usuario"); // usuario / admin
+  const [vista, setVista] = useState("liga"); // liga | formulario
 
+  useEffect(() => {
+    const usuarioGuardado = localStorage.getItem("logueado");
+    const rolGuardado = localStorage.getItem("rol");
+
+    if (usuarioGuardado === "true") setLogueado(true);
+    if (rolGuardado) setRol(rolGuardado);
+  }, []);
+
+  // 🟢 Cuando el login es exitoso
+  const handleLogin = (userRol) => {
+    setLogueado(true);
+    setRol(userRol);
+    localStorage.setItem("logueado", "true");
+    localStorage.setItem("rol", userRol);
+  };
+
+  // 🟢 Cuando en el Header se selecciona un formulario
+  const handleSelectFormulario = () => {
+    setVista("formulario");
+  };
+
+  // 🟢 Cuando en el Header el usuario vuelve a la liga
+  const handleVolverLiga = () => {
+    setVista("liga");
+  };
+
+  // 🔴 Si NO está logueado → mostrar solo LOGIN
+  if (!logueado) {
+    return <Login onLogin={handleLogin} />;
+  }
+
+  // 🟢 Ya logueado → mostrar header + contenido + footer
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+
+      <Header
+        rol={rol}
+        onSelectFormulario={handleSelectFormulario}
+        onSelectLiga={handleVolverLiga}
+      />
+
+      {vista === "liga" && <Ligas rol={rol} />}
+
+      {vista === "formulario" && rol === "admin" && <Formulario />}
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

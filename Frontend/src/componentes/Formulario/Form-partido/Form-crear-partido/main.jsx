@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDatosFutbol } from "../useDatosFutbol";
+import { useDatosFutbol } from "../../../../hooks/UsedatosFutbol";
 
 const CrearPartido = () => {
   const { equipos, jornadas, crearPartido, loading } = useDatosFutbol();

@@ -1,4 +1,4 @@
-import TarjetaPartido from "./TarjetaPartido";
+import TarjetaPartido from "./tarjeta-Partido";
 
 export default function ListadoPartidos({
   partidos,

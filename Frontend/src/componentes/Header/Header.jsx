@@ -1,26 +1,26 @@
-import "./HeaderUsuario.css";
+import "./Header.css";
 import { useEffect, useState } from "react";
-import logo from "../assets/escudo.png"; // coloca tu ruta real
 
-export default function HeaderUsuario({ onSelectJornada, onIrTabla }) {
+export default function HeaderUsuario({ onSelectJornada, onSelectLiga }) {
   const [jornadas, setJornadas] = useState([]);
 
   useEffect(() => {
-    const cargar = async () => {
+    const fetchJornadas = async () => {
       try {
         const res = await fetch("http://localhost:9000/api/jornadas");
         const data = await res.json();
         setJornadas(data);
-      } catch (error) {
-        console.log("Error cargando jornadas:", error);
+      } catch (err) {
+        console.log("Error:", err);
       }
     };
 
-    cargar();
+    fetchJornadas();
   }, []);
 
   return (
     <header className="header-user">
+
       {/* LOGO */}
       <div className="header-user-logo">
         <img src={logo} alt="logo" />
@@ -40,9 +40,13 @@ export default function HeaderUsuario({ onSelectJornada, onIrTabla }) {
       </select>
 
       {/* BOTÓN TABLA */}
-      <button className="header-user-btn" onClick={onIrTabla}>
+      <button
+        className="header-user-btn"
+        onClick={() => onSelectLiga("tabla")}
+      >
         Tabla
       </button>
+
     </header>
   );
 }

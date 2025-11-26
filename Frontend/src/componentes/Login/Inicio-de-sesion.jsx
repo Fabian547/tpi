@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./login.css"; // importar los estilos separados
+
 
 export default function Login({ onLogin, onRegister }) {
   const [usuario, setUsuario] = useState("");

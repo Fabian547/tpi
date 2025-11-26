@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import HeaderAdmin from "../Header/HeaderAdmin";
-import HeaderUsuario from "../Header/HeaderUsuario";
+import HeaderAdmin from "./header-Admin";
+import HeaderUsuario from "./Header";
 
-import JornadasAdmin from "./Jornadas-Admin/main";
-import JornadasUsuario from "./Jornadas/main";
-import TablaPosiciones from "./Tabla/tabla";
+import JornadasAdmin from "../Liga/Jornadas-Admin/main";
+import JornadasUsuario from "../Liga/Jornadas/main";
+import TablaPosiciones from "../Liga/Tabla";
 
-import "./main.css";
+import "./header.css";
 
 export default function LigaMain() {
   const [rol, setRol] = useState("usuario"); // valor por defecto

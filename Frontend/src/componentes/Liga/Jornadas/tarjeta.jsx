@@ -1,4 +1,4 @@
-import "./TarjetaPartidoUsuario.css";
+
 
 export default function TarjetaPartidoUsuario({ partido }) {
   return (

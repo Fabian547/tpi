@@ -1,7 +1,7 @@
 import React from "react";
-import CrearLiga from "./Form-crear-liga";
-import EliminarLiga from "./Form-eliminar-liga";
-import ModificarLiga from "./Form-modificar-liga";
+import CrearLiga from "./Form-crear-liga/main";
+import EliminarLiga from "./Form-eliminar-liga/main";
+import ModificarLiga from "./Form-modificar-liga/main";
 
 const FormLiga = () => {
   return (

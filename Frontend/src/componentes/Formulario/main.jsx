@@ -1,7 +1,7 @@
-import FormPartido from "../form-partido";
-import FormLiga from "../form-liga";
-import FormEquipo from "../form-equipo";
-import FormUsuario from "../form-usuario";
+import FormPartido from "./Form-partido/main";
+import FormLiga from "./Form-liga/main";
+import FormEquipo from "./Form-equipo/main";
+import FormUsuario from "./Form-usuario/main";
 
 export default function Formularios() {
   

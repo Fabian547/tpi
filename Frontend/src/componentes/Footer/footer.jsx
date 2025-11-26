@@ -1,5 +1,4 @@
 import "./Footer.css";
-import logo from "../assets/escudo.png"; // poné la ruta real a tu imagen
 
 export default function Footer() {
   return (

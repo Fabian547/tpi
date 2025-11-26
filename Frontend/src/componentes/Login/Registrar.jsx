@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./login.css"; // reutilizamos el mismo CSS del login
 
 export default function Registro({ onRegister, onIrALogin }) {
   const [usuario, setUsuario] = useState("");

@@ -1,6 +1,6 @@
-import CrearEquipo from "./crear-equipo/main";
-import EliminarEquipo from "./eliminar-equipo/main";
-import ModificarEquipo from "./modificar-equipo/main";
+import CrearEquipo from "./Form-crear-equipo";
+import EliminarEquipo from "./Form-Eliminar-Equipo";
+import ModificarEquipo from "./Form-Modificar-equipo";
 
 export default function FormEquipoIndex() {
   return (

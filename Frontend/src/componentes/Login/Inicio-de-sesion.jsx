@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import "./login.css";
 
-
-export default function Login({ onLogin, onRegister }) {
+export default function InicioDeSesion({ onLogin, onIrARegistro }) {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -32,18 +32,20 @@ export default function Login({ onLogin, onRegister }) {
 
         {/* Botones */}
         <div className="login-buttons">
+          {/* BOTÓN PRINCIPAL: CONFIRMAR LOGIN */}
           <button
-            onClick={() => onRegister && onRegister()}
             className="login-button"
-          >
-            registrarse
-          </button>
-
-          <button
-            onClick={() => onLogin && onLogin(usuario, contrasena)}
-            className="login-button"
+            onClick={() => onLogin && onLogin({ usuario, contrasena })}
           >
             Iniciar sesión
+          </button>
+
+          {/* BOTÓN SECUNDARIO: CAMBIAR A REGISTRO */}
+          <button
+            className="login-button"
+            onClick={onIrARegistro}
+          >
+            Registrarse
           </button>
         </div>
       </div>

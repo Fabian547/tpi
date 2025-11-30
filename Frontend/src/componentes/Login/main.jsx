@@ -11,7 +11,7 @@ export default function LoginMain() {
     <div>
       {vista === "login" && (
         <InicioDeSesion
-          onRegister={() => setVista("registro")}
+          onIrARegistro={() => setVista("registro")}
         />
       )}
 

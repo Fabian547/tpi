@@ -3,15 +3,17 @@ import "./App.css";
 
 import Header from "./componentes/Header/main";
 import Ligas from "./componentes/Liga/main";
-import Formulario from "./componentes/Formulario/main";
+import Formularios from "./componentes/Formulario/main";
 import Login from "./componentes/Login/main";
 import Footer from "./componentes/Footer/footer";
 
 function App() {
   const [logueado, setLogueado] = useState(false);
-  const [rol, setRol] = useState("usuario"); // usuario / admin
-  const [vista, setVista] = useState("liga"); // liga | formulario
+  const [rol, setRol] = useState("usuario"); // "usuario" | "admin"
+  const [vista, setVista] = useState("liga"); // "liga" | "formulario"
+  const [formSeleccionado, setFormSeleccionado] = useState(null); // 👈 agregado del test
 
+  // Cargar usuario guardado
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("logueado");
     const rolGuardado = localStorage.getItem("rol");
@@ -20,7 +22,7 @@ function App() {
     if (rolGuardado) setRol(rolGuardado);
   }, []);
 
-  // 🟢 Cuando el login es exitoso
+  // ➤ Login exitoso
   const handleLogin = (userRol) => {
     setLogueado(true);
     setRol(userRol);
@@ -28,22 +30,23 @@ function App() {
     localStorage.setItem("rol", userRol);
   };
 
-  // 🟢 Cuando en el Header se selecciona un formulario
-  const handleSelectFormulario = () => {
+  // ➤ Seleccionar formulario desde Header
+  const handleSelectFormulario = (formName) => {
+    setFormSeleccionado(formName);   // ej: "form-liga"
     setVista("formulario");
   };
 
-  // 🟢 Cuando en el Header el usuario vuelve a la liga
+  // ➤ Volver a Liga
   const handleVolverLiga = () => {
     setVista("liga");
+    setFormSeleccionado(null);
   };
 
-  // 🔴 Si NO está logueado → mostrar solo LOGIN
+  // 🔴 Mostrar solo login si no está logueado
   if (!logueado) {
     return <Login onLogin={handleLogin} />;
   }
 
-  // 🟢 Ya logueado → mostrar header + contenido + footer
   return (
     <div className="App">
 
@@ -53,9 +56,13 @@ function App() {
         onSelectLiga={handleVolverLiga}
       />
 
+      {/* Vista Liga (tabla + jornadas) */}
       {vista === "liga" && <Ligas rol={rol} />}
 
-      {vista === "formulario" && rol === "admin" && <Formulario />}
+      {/* Vista Formularios (solo admin) */}
+      {vista === "formulario" && rol === "admin" && (
+        <Formularios vista={formSeleccionado} />
+      )}
 
       <Footer />
     </div>

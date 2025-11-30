@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./login.css";
 
-export default function Registro({ onRegister, onIrALogin }) {
+export default function Registrar({ onRegister, onIrALogin }) {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [confirmar, setConfirmar] = useState("");
@@ -42,23 +43,21 @@ export default function Registro({ onRegister, onIrALogin }) {
 
         {/* Botones */}
         <div className="login-buttons">
+          {/* BOTÓN PRINCIPAL: CONFIRMAR REGISTRO */}
           <button
             className="login-button"
             onClick={() =>
               onRegister &&
-              onRegister({
-                usuario,
-                contrasena,
-                confirmar,
-              })
+              onRegister({ usuario, contrasena, confirmar })
             }
           >
-            registrarse
+            Registrarse
           </button>
 
+          {/* BOTÓN SECUNDARIO: VOLVER A LOGIN */}
           <button
             className="login-button"
-            onClick={() => onIrALogin && onIrALogin()}
+            onClick={onIrALogin}
           >
             Iniciar sesión
           </button>

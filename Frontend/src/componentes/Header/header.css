@@ -1,16 +1,13 @@
-/* ============================
-   ESTILOS GENERALES PARA AMBOS HEADERS
-   ============================ */
 .top-header,
 .header-user {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background: #2d6a2d;
-  padding: 10px 20px;
+    width: 203vh;
+    display: flex;
+    align-items: center;
+    background: #2E7D32;
+    padding: 10px 20px;
+    justify-content: space-between;
 }
 
-/* LOGO */
 .header-logo img,
 .header-user-logo img {
   width: 65px;
@@ -22,13 +19,12 @@
 .header-title {
   font-size: 32px;
   font-weight: bold;
-  color: white;
 }
 
 /* BOTONES / SELECTS (compartidos) */
 .header-buttons,
 .header-user-buttons {
-  display: flex;
+  display: contents;
   gap: 25px;
   margin-left: auto;
 }
@@ -37,7 +33,7 @@
 .header-select,
 .header-user-select,
 .header-user-btn {
-  background: #7fbf3f;
+  background: #58A32E;
   padding: 10px 25px;
   border-radius: 10px;
   font-weight: 500;

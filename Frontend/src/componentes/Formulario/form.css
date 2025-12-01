@@ -1,0 +1,54 @@
+body{ 
+    background-color: #2E7D68;
+    color: black;}
+.form{ 
+    background-color: #347213;
+    color: black;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.div-form{
+    
+    display: flex;
+    flex-direction: column;
+}
+.formulario-padre{
+     margin-left: 97px;
+     padding-right: 50px;
+     display: flow;
+
+
+}
+
+input{ background-color: #58A32E;
+}
+
+.formulario{
+    display: contents;
+}
+
+.titulo{
+    color: black;
+    display: flex;
+    justify-content: start;
+}
+
+.form-input{
+    border: none;
+}
+
+.form-select{
+    background-color: #58A32E ;
+    color: black;
+}
+
+::placeholder{
+    background-color: #58A32E;
+    color: black;
+}
+
+.form-button{
+    background-color:#58A32E;
+    color: black;
+}

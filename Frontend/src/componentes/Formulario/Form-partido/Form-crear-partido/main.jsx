@@ -19,20 +19,22 @@ const CrearPartido = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded-lg shadow mb-8">
-      <h2 className="text-xl font-semibold mb-4">Crear Partido</h2>
+    <form onSubmit={handleSubmit} className="form">
+      <h2 className="titulo">Crear partido</h2>
+      <div className="div-form">
+      <label className="form-label">Crear partido</label>
 
       <input
         type="text"
         placeholder="Nombre del partido"
-        className="w-full border p-2 rounded mb-4"
+        className="form-input"
         value={partido.nombre}
         onChange={(e) => setPartido({ ...partido, nombre: e.target.value })}
         required
       />
-
+      <label className="form-label">Jornadas</label>
       <select
-        className="w-full border p-2 rounded mb-4"
+        className="form-select"
         value={partido.id_jornada}
         onChange={(e) => setPartido({ ...partido, id_jornada: e.target.value })}
         required
@@ -42,10 +44,9 @@ const CrearPartido = () => {
           <option key={j.id} value={j.id}>{j.nombre}</option>
         ))}
       </select>
-
-      <div className="grid grid-cols-2 gap-4 mb-4">
+        <label className="form-label">Equipo local</label>
         <select
-          className="border p-2 rounded"
+          className="form-select"
           value={partido.id_local}
           onChange={(e) => setPartido({ ...partido, id_local: e.target.value })}
           required
@@ -55,9 +56,9 @@ const CrearPartido = () => {
             <option key={eq.id} value={eq.id}>{eq.nombre}</option>
           ))}
         </select>
-
+          <label className="form-label">Equipo visitante</label>
         <select
-          className="border p-2 rounded"
+          className="form-select"
           value={partido.id_visitante}
           onChange={(e) => setPartido({ ...partido, id_visitante: e.target.value })}
           required
@@ -69,9 +70,11 @@ const CrearPartido = () => {
         </select>
       </div>
 
-      <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-        Crear Partido
-      </button>
+      <div className="button">
+        <button type="submit" className="form-button">
+          Crear partido
+        </button>
+        </div>
     </form>
   );
 };

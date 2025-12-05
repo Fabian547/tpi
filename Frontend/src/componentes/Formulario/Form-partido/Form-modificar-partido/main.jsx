@@ -21,11 +21,13 @@ const ModificarPartido = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded-lg shadow mb-8">
-      <h2 className="text-xl font-semibold mb-4">Modificar Partido</h2>
+    <form onSubmit={handleSubmit} className="form">
+      <h2 className="titulo">Modificar Partido</h2>
+        <div className="div-form">
+        <label className="form-label">Partido</label>
 
       <select
-        className="w-full border p-2 rounded mb-4"
+        className="form-select"
         value={datos.id}
         onChange={(e) => setDatos({ ...datos, id: e.target.value })}
         required
@@ -35,10 +37,9 @@ const ModificarPartido = () => {
           <option key={p.id} value={p.id}>{p.nombre}</option>
         ))}
       </select>
-
-      <div className="grid grid-cols-2 gap-4 mb-4">
+        <label className="form-label">Nuevo equipo local</label>
         <select
-          className="border p-2 rounded"
+          className="form-select"
           value={datos.id_local}
           onChange={(e) => setDatos({ ...datos, id_local: e.target.value })}
           required
@@ -48,9 +49,9 @@ const ModificarPartido = () => {
             <option key={eq.id} value={eq.id}>{eq.nombre}</option>
           ))}
         </select>
-
+          <label className="form-label">Nuevo equipo visitante</label>
         <select
-          className="border p-2 rounded"
+          className="form-select"
           value={datos.id_visitante}
           onChange={(e) => setDatos({ ...datos, id_visitante: e.target.value })}
           required
@@ -60,9 +61,8 @@ const ModificarPartido = () => {
             <option key={eq.id} value={eq.id}>{eq.nombre}</option>
           ))}
         </select>
-      </div>
-
-      <button className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
+</div>
+      <button className="form-button">
         Modificar Partido
       </button>
     </form>

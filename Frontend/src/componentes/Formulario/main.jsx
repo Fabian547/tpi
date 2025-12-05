@@ -3,30 +3,34 @@ import FormLiga from "./Form-liga/main";
 import FormEquipo from "./Form-equipo/main";
 import FormUsuario from "./Form-usuario/main";
 
-export default function Formularios() {
-  
+export default function Formularios({ vista }) {
+
   return (
-    <div className="Seccion p-6 space-y-8">
+    <div className="formulario-padre">
 
-      <section>
-        <h2>Gestión de Partidos</h2>
-        <FormPartido />
-      </section>
+      {vista === "form-partidos" && (
+        <section>
+          <FormPartido />
+        </section>
+      )}
 
-      <section >
-        <h2>Gestión de Ligas</h2>
-        <FormLiga />
-      </section>
+      {vista === "form-liga" && (
+        <section>
+          <FormLiga />
+        </section>
+      )}
 
-      <section>
-        <h2 >Gestión de Equipos</h2>
-        <FormEquipo />
-      </section>
+      {vista === "form-equipos" && (
+        <section>
+          <FormEquipo />
+        </section>
+      )}
 
-      <section >
-        <h2>Gestión de Usuarios</h2>
-        <FormUsuario />
-      </section>
+      {vista === "form-usuario" && (
+        <section>
+          <FormUsuario />
+        </section>
+      )}
 
     </div>
   );

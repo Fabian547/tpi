@@ -15,28 +15,29 @@ export default function CrearEquipo() {
   };
 
   return (
-    <form
+    <form 
       onSubmit={crear}
-      className="p-4 border rounded-xl shadow space-y-3"
+      className="form"
     >
-      <h3 className="text-lg font-semibold">Crear Equipo</h3>
-
+      <div className="div-form">
+      <h3 className="titulo">Crear Equipo</h3>
+      <label className="form-label">Nombre de equipo</label>
       <input
         type="text"
         placeholder="Nombre del equipo"
-        className="border p-2 rounded w-full"
+        className="form-input"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
       />
-
+      <label className="form-label">Escudo del equipo</label>
       <input
         type="file"
         accept="image/png, image/jpeg"
-        className="border p-2 rounded w-full"
+        className="form-input"
         onChange={(e) => setEscudo(e.target.files[0])}
       />
-
-      <button className="bg-green-600 text-white px-4 py-2 rounded">
+      </div>
+      <button className="form-button">
         Crear
       </button>
     </form>

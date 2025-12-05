@@ -32,6 +32,7 @@ input{ background-color: #58A32E;
     color: black;
     display: flex;
     justify-content: start;
+    text-decoration: solid;
 }
 
 .form-input{
@@ -51,4 +52,8 @@ input{ background-color: #58A32E;
 .form-button{
     background-color:#58A32E;
     color: black;
+    width: max-content;
+}.button{
+    display: flex;
+    justify-content: center;
 }

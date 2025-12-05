@@ -6,7 +6,8 @@ import ModificarUsuario from "./Form-modificar-usuario/main";
 
 export default function FormUsuario() {
   return (
-    <div className="contenedor-form-usuario">
+    <div className="formulario">
+      <h1 className="titulo">Gestión de Equipos</h1>
 
       <CrearUsuario />
 

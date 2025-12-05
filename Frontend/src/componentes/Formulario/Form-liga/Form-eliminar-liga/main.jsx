@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../../form.css'
 
 const EliminarLiga = () => {
   const [ligas, setLigas] = useState([]);
@@ -36,29 +37,29 @@ const EliminarLiga = () => {
   };
 
   return (
-    <form
-      onSubmit={handleEliminar}
-      className="border p-4 rounded-xl shadow-md space-y-4"
-    >
-      <h2 className="text-xl font-semibold">Eliminar Liga</h2>
-      <select
-        value={ligaSeleccionada}
-        onChange={(e) => setLigaSeleccionada(e.target.value)}
-        className="w-full p-2 border rounded-md"
-      >
-        <option value="">Seleccionar liga...</option>
-        {ligas.map((liga) => (
-          <option key={liga.id} value={liga.id}>
-            {liga.nombre}
-          </option>
-        ))}
-      </select>
-      <button
-        type="submit"
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-      >
-        Eliminar
-      </button>
+    <form onSubmit={handleEliminar} className="form">
+      <h2 className="titulo">Eliminar Liga</h2>
+
+      <div className="div-form">
+        <label className="form-label">ligas</label>
+        <select
+          value={ligaSeleccionada}
+          onChange={(e) => setLigaSeleccionada(e.target.value)}
+          className="form-select"
+        >
+          <option value="">Seleccionar liga...</option>
+          {ligas.map((liga) => (
+            <option key={liga.id} value={liga.id}>
+              {liga.nombre}
+            </option>
+          ))}
+        </select>
+          <div className="button">
+        <button type="submit" className="form-button">
+          Eliminar
+        </button>
+        </div>
+      </div>
     </form>
   );
 };

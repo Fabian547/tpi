@@ -52,28 +52,31 @@ const ModificarUsuario = () => {
   };
 
   return (
-    <form onSubmit={handleModificar} className="border p-4 rounded-xl shadow-md space-y-4">
-      <h2 className="text-xl font-semibold">Modificar Usuario</h2>
+    <form onSubmit={handleModificar} className="form">
+      <h2 className="titulo">Modificar Usuario</h2>
+      <div className="div-form">
+      
+      <label className="form-label">usuario</label>
 
       <select
         value={idUsuario}
         onChange={(e) => setIdUsuario(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-select"
       >
         <option value="">Selecciona un usuario...</option>
         {usuarios.map((u) => (
           <option key={u.id} value={u.id}>{u.nombre}</option>
         ))}
       </select>
-
+        <label className="form-label">Nuevo nombre usuario</label>
       <input
         type="text"
         placeholder="Nuevo nombre"
         value={nuevoNombre}
         onChange={(e) => setNuevoNombre(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-input"
       />
-
+    <label className="form-label">Nueva contraseña de usuario</label>
       <input
         type="password"
         placeholder="Nueva contraseña"
@@ -81,27 +84,31 @@ const ModificarUsuario = () => {
         onChange={(e) => setPass1(e.target.value)}
         className="w-full p-2 border rounded-md"
       />
+      <label className="form-label">Confirmacion de la contraseña de usuario</label>
 
       <input
         type="password"
         placeholder="Confirmar nueva contraseña"
         value={pass2}
         onChange={(e) => setPass2(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-input"
       />
+      <label className="form-label">Rol del usuario</label>
 
       <select
         value={rol}
         onChange={(e) => setRol(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-select"
       >
         <option value="usuario">Usuario</option>
         <option value="admin">Admin</option>
       </select>
-
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Modificar
-      </button>
+        </div>
+      <div className="button">
+        <button type="submit" className="form-button">
+          Modificar
+        </button>
+        </div>
     </form>
   );
 };

@@ -37,23 +37,26 @@ const EliminarUsuario = () => {
   };
 
   return (
-    <form onSubmit={handleEliminar} className="border p-4 rounded-xl shadow-md space-y-4">
-      <h2 className="text-xl font-semibold">Eliminar Usuario</h2>
-
+    <form onSubmit={handleEliminar} className="form">
+      <h2 className="titulo">Eliminar Usuario</h2>
+      <div className="div-form">
+      <label className="form-label">usuario</label>
       <select
         value={idUsuario}
         onChange={(e) => setIdUsuario(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-select"
       >
         <option value="">Selecciona un usuario...</option>
         {usuarios.map((u) => (
           <option key={u.id} value={u.id}>{u.nombre}</option>
         ))}
       </select>
-
-      <button type="submit" className="bg-red-500 text-white px-4 py-2 rounded">
-        Eliminar
-      </button>
+      </div>
+      <div className="button">
+        <button type="submit" className="form-button">
+          Eliminar
+        </button>
+        </div>
     </form>
   );
 };

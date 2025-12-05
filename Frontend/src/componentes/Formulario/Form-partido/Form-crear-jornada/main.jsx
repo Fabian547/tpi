@@ -13,19 +13,25 @@ const CrearJornada = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded-lg shadow mb-8">
-      <h2 className="text-xl font-semibold mb-4">Crear Jornada</h2>
+    <form onSubmit={handleSubmit} className="form">
+      
+      <h2 className="titulo">Crear Jornada</h2>
+      <label className="form-label">Nombre jornada</label>
+      <div className="div-form">
       <input
         type="text"
         placeholder="Nombre de la jornada"
-        className="w-full border p-2 rounded mb-4"
+        className="form-input"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
         required
       />
-      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Crear Jornada
-      </button>
+      </div>
+      <div className="button">
+        <button type="submit" className="form-button">
+          Crear jornada
+        </button>
+        </div>
     </form>
   );
 };

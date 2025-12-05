@@ -29,28 +29,32 @@ const CrearUsuario = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border p-4 rounded-xl shadow-md space-y-4">
-      <h2 className="text-xl font-semibold">Crear Usuario</h2>
-
+    <form onSubmit={handleSubmit} className="form">
+      <h2 className="titulo">Crear Usuario</h2>
+     <label className="form-label">Nombre de usuario</label>
+      <div className="div-form">
       <input
         type="text"
         placeholder="Nombre del usuario"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-input"
       />
+       <label className="form-label">contraseña de usuario</label>
 
       <input
         type="password"
         placeholder="Contraseña"
         value={pass}
         onChange={(e) => setPass(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="form-input"
       />
-
-      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
-        Crear
-      </button>
+      </div>
+      <div className="button">
+        <button type="submit" className="form-button">
+          Crear
+        </button>
+        </div>
     </form>
   );
 };

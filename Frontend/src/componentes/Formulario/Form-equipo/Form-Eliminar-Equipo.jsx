@@ -21,12 +21,13 @@ export default function EliminarEquipo() {
   return (
     <form
       onSubmit={eliminar}
-      className="p-4 border rounded-xl shadow space-y-3"
+      className="form"
     >
-      <h3 className="text-lg font-semibold">Eliminar Equipo</h3>
-
+      <div className="div-form">
+      <h3 className="titulo">Eliminar Equipo</h3>
+      <label className="form-label">selecione equipo</label>
       <select
-        className="border p-2 rounded w-full"
+        className="form-select"
         value={nombreSeleccionado}
         onChange={(e) => setNombreSeleccionado(e.target.value)}
       >
@@ -38,8 +39,8 @@ export default function EliminarEquipo() {
           </option>
         ))}
       </select>
-
-      <button className="bg-red-600 text-white px-4 py-2 rounded">
+        </div>
+      <button className="form-button">
         Eliminar
       </button>
     </form>

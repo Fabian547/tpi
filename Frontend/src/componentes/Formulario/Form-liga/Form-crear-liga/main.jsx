@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../../form.css'
 
 const CrearLiga = () => {
   const [nombreLiga, setNombreLiga] = useState("");
@@ -25,22 +26,24 @@ const CrearLiga = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <h2>Crear Liga</h2>
-      <input
-        type="text"
-        value={nombreLiga}
-        onChange={(e) => setNombreLiga(e.target.value)}
-        placeholder="Nombre de la liga"
-      />
-      <button
-        type="submit"
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-      >
-        Crear
-      </button>
+    <form onSubmit={handleSubmit} className="form">
+      <h2 className="titulo">Crear Liga</h2>
+
+      <div className="div-form">
+        <label className="form-label">Nombre de liga</label>
+        <input
+          type="text"
+          value={nombreLiga}
+          onChange={(e) => setNombreLiga(e.target.value)}
+          placeholder="Nombre de la liga"
+          className="form-input"
+        />
+        <div className="button">
+        <button type="submit" className="form-button">
+          Crear
+        </button>
+        </div>
+      </div>
     </form>
   );
 };

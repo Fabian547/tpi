@@ -10,7 +10,7 @@ const ModificarLiga = () => {
 
   const cargarLigas = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/ligas");
+      const res = await axios.get("http://localhost:3000/api/ligas");
       setLigas(res.data);
     } catch (err) {
       console.error("Error al cargar ligas:", err);
@@ -29,7 +29,7 @@ const ModificarLiga = () => {
     }
 
     try {
-      await axios.put(`http://localhost:9000/api/ligas/${ligaSeleccionada}`, {
+      await axios.put(`http://localhost:3000/api/ligas/${ligaSeleccionada}`, {
         nombre: nuevoNombre,
         estado,
       });

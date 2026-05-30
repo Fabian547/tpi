@@ -13,7 +13,7 @@ const CrearLiga = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:9000/api/ligas", {
+      const res = await axios.post("http://localhost:3000/api/ligas", {
         nombre: nombreLiga,
       });
       alert("Liga creada correctamente");

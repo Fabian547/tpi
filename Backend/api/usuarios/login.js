@@ -4,31 +4,34 @@ const db = require('../../conexion');
 const { verificarPass, generarToken } = require('@damianegreco/hashpass');
 
 const { TOKEN_SECRET } = process.env;
-router.post('/', function(req, res, next) {
-  const { rol, pass } = req.body;
 
-  let sql = "SELECT id, nombre, rol, pass FROM usuario WHERE rol = ?";
+router.post('/', function(req, res) {
+  const { pass, user } = req.body;
 
-  db.query(sql, [rol])
+  // Usamos la tabla real: usuario
+  const sql = "SELECT id, Nombre, Rol, Contraseña FROM usuario WHERE Nombre = ?";
+
+  db.query(sql, [user])
     .then(([result]) => {
       if (result && result.length === 1) {
+
         const usuario = result[0];
 
-        if (verificarPass(pass, usuario.pass)) {
-          // ✅ Agregamos el id en el token
+        if (verificarPass(pass, usuario.Contraseña)) {
+
           const token = generarToken(
             TOKEN_SECRET,
-            4, // duración en horas
-            { id: usuario.id, nombre: usuario.nombre, rol: usuario.rol }
+            40, // horas
+            { id: usuario.id, nombre: usuario.Nombre, rol: usuario.Rol }
           );
 
           res.status(200).json({ status: "ok", token });
+
         } else {
-          console.error("Contraseña incorrecta");
           res.status(401).send("Usuario y/o contraseña incorrecto");
         }
+
       } else {
-        console.error("Usuario no encontrado");
         res.status(401).send("Usuario y/o contraseña incorrecto");
       }
     })

@@ -7,7 +7,7 @@ const EliminarUsuario = () => {
 
   const cargarUsuarios = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/usuarios");
+      const res = await axios.get("http://localhost:3000/api/usuarios");
       setUsuarios(res.data);
     } catch (err) {
       console.error(err);
@@ -27,7 +27,7 @@ const EliminarUsuario = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:9000/api/usuarios/${idUsuario}`);
+      await axios.delete(`http://localhost:3000/api/usuarios/${idUsuario}`);
       alert("Usuario eliminado");
       cargarUsuarios();
     } catch (err) {

@@ -6,7 +6,7 @@ const TablaPosiciones = () => {
   useEffect(() => {
     const fetchPosiciones = async () => {
       try {
-        const res = await fetch("http://localhost:9000/api/posiciones");
+        const res = await fetch("http://localhost:3000/api/posiciones");
         const data = await res.json();
 
         // Ordenar: 1) Más puntos, 2) Más goles
@@ -49,7 +49,7 @@ const TablaPosiciones = () => {
           {/* Escudo + nombre */}
           <div className="flex items-center gap-2">
             <img
-              src={`http://localhost:9000/archivos/escudos/${equipo.escudo}`}
+              src={`http://localhost:3000/archivos/escudos/${equipo.escudo}`}
               alt="escudo"
               className="w-8 h-8 object-cover rounded"
             />

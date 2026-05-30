@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ListadoPartidos from "./Listado-partido";
+import "../jornada.css"
 
 export default function Jornadas() {
 

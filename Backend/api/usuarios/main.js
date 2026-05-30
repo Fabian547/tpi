@@ -3,17 +3,18 @@ const db = require('../../conexion');
 const { hashPass } = require('@damianegreco/hashpass');
 
 const loginRouter = require('./login');
+
 router.use("/login", loginRouter);
 
 // 🟢 Obtener todos los usuarios (con búsqueda opcional)
 router.get("/", async (req, res) => {
   const { busqueda } = req.query;
 
-  let sql = "SELECT * FROM usuarios";
+  let sql = "SELECT * FROM usuario"; 
   const params = [];
 
   if (busqueda) {
-    sql += " WHERE nombre LIKE ?";
+    sql += " WHERE Nombre LIKE ?";
     params.push(`%${busqueda}%`);
   }
 
@@ -28,17 +29,17 @@ router.get("/", async (req, res) => {
 
 // 🟡 Crear un nuevo usuario
 router.post("/", async (req, res) => {
-  const { nombre, contraseña, rol } = req.body;
+  const { Nombre, Contraseña, Rol } = req.body;
 
-  if (!nombre || !contraseña || !rol) {
+  if (!Nombre || !Contraseña || !Rol) {
     return res.status(400).send("Faltan datos obligatorios");
   }
 
   try {
-    const passHash = hashPass(contraseña);
+    const passHash = hashPass(Contraseña);
 
-    const sql = "INSERT INTO usuarios (nombre, contraseña, rol) VALUES (?, ?, ?)";
-    await db.query(sql, [nombre, passHash, rol]);
+    const sql = "INSERT INTO usuario (Nombre, Contraseña, Rol) VALUES (?, ?, ?)";
+    await db.query(sql, [Nombre, passHash, Rol]);
 
     res.status(201).send("Usuario guardado correctamente");
   } catch (error) {
@@ -50,15 +51,15 @@ router.post("/", async (req, res) => {
 // 🔵 Actualizar un usuario
 router.put("/:usuario_id", async (req, res) => {
   const { usuario_id } = req.params;
-  const { nombre, contraseña, rol } = req.body;
+  const { Nombre, Contraseña, Rol } = req.body;
 
   try {
-    let sql = "UPDATE usuarios SET nombre = ?, rol = ?";
-    const params = [nombre, rol];
+    let sql = "UPDATE usuario SET Nombre = ?, Rol = ?";
+    const params = [Nombre, Rol];
 
-    if (contraseña) {
-      sql += ", contraseña = ?";
-      params.push(hashPass(contraseña));
+    if (Contraseña) {
+      sql += ", Contraseña = ?";
+      params.push(hashPass(Contraseña));
     }
 
     sql += " WHERE id = ?";
@@ -77,7 +78,7 @@ router.delete("/:usuario_id", async (req, res) => {
   const { usuario_id } = req.params;
 
   try {
-    await db.query("DELETE FROM usuarios WHERE id = ?", [usuario_id]);
+    await db.query("DELETE FROM usuario WHERE id = ?", [usuario_id]);
     res.status(200).send("Usuario eliminado correctamente");
   } catch (error) {
     console.error(error);

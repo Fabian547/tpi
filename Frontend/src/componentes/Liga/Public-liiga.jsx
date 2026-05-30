@@ -7,7 +7,7 @@ export default function PublicLiga({ onSelectLiga }) {
   useEffect(() => {
     const cargarLigas = async () => {
       try {
-        const res = await fetch("http://localhost:9000/api/ligas/publicas");
+        const res = await fetch("http://localhost:3000/api/ligas/publicas");
         const data = await res.json();
         setLigas(data);
       } catch (error) {

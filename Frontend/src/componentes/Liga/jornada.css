@@ -1,0 +1,18 @@
+.tarjeta-partido-usuario
+{ background-color: #347213;
+color: black;
+}
+.equipo img{
+    width: 50px;
+}
+.resultado{
+    color: black;
+}
+.button-verde{
+    background-color: #58A32e ;
+    color: black;
+}
+.button-rojo{
+    background-color: crimson;
+    color: black;
+}

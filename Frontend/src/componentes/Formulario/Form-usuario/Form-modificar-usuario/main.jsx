@@ -37,7 +37,7 @@ const ModificarUsuario = () => {
     }
 
     try {
-      await axios.put(`http://localhost:9000/api/usuarios/${idUsuario}`, {
+      await axios.put(`http://localhost:3000/api/usuarios/${idUsuario}`, {
         nombre: nuevoNombre,
         pass: pass1,
         rol

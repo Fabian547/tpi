@@ -30,10 +30,10 @@ router.get("/:id_liga", async function (req, res, next) {
 router.post("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;
   const { nombre, estado } = req.body;
-  const id_usuario = req.usuario.id; 
+  const id_usuario = req.user.id; // ✅
 
   try {
-    const [liga] = await db.query("SELECT * FROM liga WHERE id = ?", [id_liga]);
+    const [liga] = await db.query("SELECT * FROM ligas WHERE id = ?", [id_liga]); // ✅
     if (liga.length === 0) {
       return res.status(404).send("La liga no existe");
     }
@@ -53,7 +53,7 @@ router.post("/:id_liga", async function (req, res, next) {
 router.put("/:id_liga/:partido_id", async function (req, res, next) {
   const { id_liga, partido_id } = req.params;
   const { nombre, estado } = req.body;
-  const id_usuario = req.usuario.id;
+  const id_usuario = req.user.id; // ✅
 
   try {
     const sql = `
@@ -74,10 +74,9 @@ router.put("/:id_liga/:partido_id", async function (req, res, next) {
   }
 });
 
-
 router.delete("/:id_liga/:partido_id", async function (req, res, next) {
   const { id_liga, partido_id } = req.params;
-  const id_usuario = req.usuario.id;
+  const id_usuario = req.user.id; // ✅
 
   try {
     const [result] = await db.query(

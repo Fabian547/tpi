@@ -45,7 +45,7 @@ router.get("/:id_liga", async function (req, res, next) {
     let sql = `
       SELECT e.*, u.nombre AS creador
       FROM equipos e
-      JOIN usuarios u ON e.id_usuario = u.id
+      JOIN usuario u ON e.id_usuario = u.id
       WHERE e.id_ligas = ?
     `;
     const params = [id_liga];

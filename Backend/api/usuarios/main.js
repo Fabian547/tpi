@@ -4,8 +4,6 @@ const { hashPass } = require('@damianegreco/hashpass');
 
 const loginRouter = require('./login');
 
-router.use("/login", loginRouter);
-
 // 🟢 Obtener todos los usuarios (con búsqueda opcional)
 router.get("/", async (req, res) => {
   const { busqueda } = req.query;

@@ -1,5 +1,6 @@
 import "./Header.css";
 import { useEffect, useState } from "react";
+import logo from "../../assets/logo.png"; // ajustá la ruta
 
 export default function HeaderUsuario({ onSelectJornada, onSelectLiga }) {
   const [jornadas, setJornadas] = useState([]);

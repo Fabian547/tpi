@@ -1,6 +1,6 @@
 .top-header,
 .header-user {
-    width: 203vh;
+    width: 100%;
     display: flex;
     align-items: center;
     background: #2E7D32;

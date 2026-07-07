@@ -7,11 +7,14 @@ export default function PublicLiga({ onSelectLiga }) {
   useEffect(() => {
     const cargarLigas = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/ligas/publicas");
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:3000/api/ligas", {
+          headers: { Authorization: token }
+        });
         const data = await res.json();
         setLigas(data);
       } catch (error) {
-        console.log("Error cargando ligas públicas:", error);
+        console.log("Error cargando ligas:", error);
       }
     };
 
@@ -20,24 +23,19 @@ export default function PublicLiga({ onSelectLiga }) {
 
   return (
     <div className="public-liga-container">
-
       <h1 className="public-liga-titulo">Ligas</h1>
-
       <div className="public-liga-lista">
-
         {ligas.map((liga) => (
           <div
             key={liga.id}
             className="public-liga-card"
             onClick={() => onSelectLiga(liga.id)}
           >
-            <h2>{liga.nombre}</h2>
-            <p className="public-liga-autor">Autor: {liga.autor}</p>
+            <h2>{liga.Nombre}</h2>
+            <p className="public-liga-autor">Autor: {liga.creador}</p>
           </div>
         ))}
-
       </div>
-
     </div>
   );
 }

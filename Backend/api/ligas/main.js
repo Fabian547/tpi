@@ -1,22 +1,21 @@
 const router = require("express").Router();
 const db = require("../../conexion");
 
-
 router.get("/", async function (req, res, next) {
   const id_usuario = req.user.id;
   const { busqueda } = req.query;
 
   try {
     let sql = `
-      SELECT l.*, u.nombre AS creador
+      SELECT l.*, u.Nombre AS creador
       FROM ligas l
-      JOIN usuario u ON l.id_usuario = u.id
-      WHERE l.estado = 'publico' OR l.id_usuario = ?
+      JOIN usuario u ON l.Id_Usuario = u.id
+      WHERE (l.estado = 1 OR l.Id_Usuario = ?)
     `;
     const params = [id_usuario];
 
     if (busqueda) {
-      sql += " AND l.nombre LIKE ?";
+      sql += " AND l.Nombre LIKE ?";
       params.push(`%${busqueda}%`);
     }
 
@@ -28,21 +27,19 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-
 router.post("/", async function (req, res, next) {
   const { nombre, estado } = req.body;
   const id_usuario = req.user.id;
 
-  if (!nombre || !estado) {
+  if (!nombre || estado === undefined) {
     return res.status(400).send("Faltan datos obligatorios");
   }
 
   try {
     await db.query(
-      "INSERT INTO ligas (nombre, estado, id_usuario) VALUES (?, ?, ?)",
+      "INSERT INTO ligas (Nombre, estado, Id_Usuario) VALUES (?, ?, ?)",
       [nombre, estado, id_usuario]
     );
-
     res.status(201).send("Liga creada correctamente");
   } catch (error) {
     console.error(error);
@@ -58,8 +55,8 @@ router.put("/:id_liga", async function (req, res, next) {
   try {
     const sql = `
       UPDATE ligas
-      SET nombre = ?, estado = ?
-      WHERE id = ? AND id_usuario = ?
+      SET Nombre = ?, estado = ?
+      WHERE id = ? AND Id_Usuario = ?
     `;
     const [result] = await db.query(sql, [nombre, estado, id_liga, id_usuario]);
 
@@ -74,14 +71,13 @@ router.put("/:id_liga", async function (req, res, next) {
   }
 });
 
-
 router.delete("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;
   const id_usuario = req.user.id;
 
   try {
     const [result] = await db.query(
-      "DELETE FROM ligas WHERE id = ? AND id_usuario = ?",
+      "DELETE FROM ligas WHERE id = ? AND Id_Usuario = ?",
       [id_liga, id_usuario]
     );
 
@@ -96,5 +92,7 @@ router.delete("/:id_liga", async function (req, res, next) {
   }
 });
 
-module.exports = router;
+const posicionesRouter = require('./posiciones');
+router.use('/posiciones', posicionesRouter);
 
+module.exports = router;

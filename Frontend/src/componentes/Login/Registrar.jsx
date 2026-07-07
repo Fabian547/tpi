@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import "./login.css";
 
-export default function Registrar({ onRegister, onIrALogin }) {
+export default function Registrar({ onRegister, onIrALogin, error }) {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [confirmar, setConfirmar] = useState("");
+  const [errorLocal, setErrorLocal] = useState("");
+
+  function handleRegistrar() {
+    if (contrasena !== confirmar) {
+      setErrorLocal("Las contraseñas no coinciden");
+      return;
+    }
+    setErrorLocal("");
+    onRegister && onRegister({ usuario, contrasena });
+  }
 
   return (
     <div className="login-container">
       <div className="login-box">
         <h1 className="login-title">Registro de Usuario</h1>
 
-        {/* Usuario */}
         <label className="login-label">Usuario</label>
         <input
           type="text"
@@ -21,7 +30,6 @@ export default function Registrar({ onRegister, onIrALogin }) {
           className="login-input"
         />
 
-        {/* Contraseña */}
         <label className="login-label">Contraseña</label>
         <input
           type="password"
@@ -31,7 +39,6 @@ export default function Registrar({ onRegister, onIrALogin }) {
           className="login-input"
         />
 
-        {/* Confirmación */}
         <label className="login-label">Confirmar contraseña</label>
         <input
           type="password"
@@ -41,24 +48,15 @@ export default function Registrar({ onRegister, onIrALogin }) {
           className="login-input"
         />
 
-        {/* Botones */}
+        {/* Errores */}
+        {errorLocal && <p style={{ color: "red" }}>{errorLocal}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <div className="login-buttons">
-          {/* BOTÓN PRINCIPAL: CONFIRMAR REGISTRO */}
-          <button
-            className="login-button"
-            onClick={() =>
-              onRegister &&
-              onRegister({ usuario, contrasena, confirmar })
-            }
-          >
+          <button className="login-button" onClick={handleRegistrar}>
             Registrarse
           </button>
-
-          {/* BOTÓN SECUNDARIO: VOLVER A LOGIN */}
-          <button
-            className="login-button"
-            onClick={onIrALogin}
-          >
+          <button className="login-button" onClick={onIrALogin}>
             Iniciar sesión
           </button>
         </div>

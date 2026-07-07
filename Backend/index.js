@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require("path");
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -9,6 +10,7 @@ const apiRouter = require('./api/main');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // directorio publico 
@@ -24,7 +26,6 @@ http://localhost:5000/api/alumnos/    -> SELECT db
 app.get('/', function(req, res, next){
   res.send("App de express");
 });
-
 
 app.use('/api', apiRouter);
 

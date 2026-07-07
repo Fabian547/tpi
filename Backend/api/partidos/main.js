@@ -7,15 +7,15 @@ router.get("/:id_liga", async function (req, res, next) {
 
   try {
     let sql = `
-      SELECT p.*, u.nombre AS creador
-      FROM partido p
-      JOIN usuario u ON p.id_usuario = u.id
-      WHERE p.id_ligas = ?
+      SELECT p.*, u.Nombre AS creador
+      FROM partidos p
+      JOIN usuario u ON p.Id_Usuario = u.id
+      WHERE p.id_Ligas = ?
     `;
     const params = [id_liga];
 
     if (busqueda) {
-      sql += " AND p.nombre LIKE ?";
+      sql += " AND p.Nombre LIKE ?";
       params.push(`%${busqueda}%`);
     }
 
@@ -30,16 +30,16 @@ router.get("/:id_liga", async function (req, res, next) {
 router.post("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;
   const { nombre, estado } = req.body;
-  const id_usuario = req.user.id; // ✅
+  const id_usuario = req.user.id;
 
   try {
-    const [liga] = await db.query("SELECT * FROM ligas WHERE id = ?", [id_liga]); // ✅
+    const [liga] = await db.query("SELECT * FROM ligas WHERE id = ?", [id_liga]);
     if (liga.length === 0) {
       return res.status(404).send("La liga no existe");
     }
 
     await db.query(
-      "INSERT INTO partido (nombre, estado, id_usuario, id_ligas) VALUES (?, ?, ?, ?)",
+      "INSERT INTO partidos (Nombre, Estado, Id_Usuario, id_Ligas) VALUES (?, ?, ?, ?)",
       [nombre, estado, id_usuario, id_liga]
     );
 
@@ -53,13 +53,13 @@ router.post("/:id_liga", async function (req, res, next) {
 router.put("/:id_liga/:partido_id", async function (req, res, next) {
   const { id_liga, partido_id } = req.params;
   const { nombre, estado } = req.body;
-  const id_usuario = req.user.id; // ✅
+  const id_usuario = req.user.id;
 
   try {
     const sql = `
-      UPDATE partido
-      SET nombre = ?, estado = ?
-      WHERE id = ? AND id_ligas = ? AND id_usuario = ?
+      UPDATE partidos
+      SET Nombre = ?, Estado = ?
+      WHERE id = ? AND id_Ligas = ? AND Id_Usuario = ?
     `;
     const [result] = await db.query(sql, [nombre, estado, partido_id, id_liga, id_usuario]);
 
@@ -76,11 +76,11 @@ router.put("/:id_liga/:partido_id", async function (req, res, next) {
 
 router.delete("/:id_liga/:partido_id", async function (req, res, next) {
   const { id_liga, partido_id } = req.params;
-  const id_usuario = req.user.id; // ✅
+  const id_usuario = req.user.id;
 
   try {
     const [result] = await db.query(
-      "DELETE FROM partido WHERE id = ? AND id_ligas = ? AND id_usuario = ?",
+      "DELETE FROM partidos WHERE id = ? AND id_Ligas = ? AND Id_Usuario = ?",
       [partido_id, id_liga, id_usuario]
     );
 

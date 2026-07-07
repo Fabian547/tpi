@@ -10,7 +10,6 @@ if (!fs.existsSync(directorio)) {
   fs.mkdirSync(directorio, { recursive: true });
 }
 
-
 router.post("/escudo", fileUpload(), function (req, res, next) {
   if (!req.files || !req.files.archivo) {
     console.error("No hay archivo");
@@ -25,17 +24,17 @@ router.post("/escudo", fileUpload(), function (req, res, next) {
     return res.status(403).send("Solo se permiten archivos .jpg o .png");
   }
 
-  const filepath = path.join(directorio, archivo.name);
+  const nombreUnico = `${Date.now()}${extension}`;
+  const filepath = path.join(directorio, nombreUnico);
 
   archivo.mv(filepath, function (error) {
     if (error) {
       console.error(error);
       return res.status(500).send("Ocurrió un error al guardar el archivo");
     }
-    res.status(201).send("Escudo guardado correctamente");
+    res.status(201).json({ mensaje: "Escudo guardado correctamente", archivo: nombreUnico });
   });
 });
-
 
 router.get("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;
@@ -43,15 +42,15 @@ router.get("/:id_liga", async function (req, res, next) {
 
   try {
     let sql = `
-      SELECT e.*, u.nombre AS creador
+      SELECT e.*, u.Nombre AS creador
       FROM equipos e
       JOIN usuario u ON e.id_usuario = u.id
-      WHERE e.id_ligas = ?
+      WHERE e.id_Ligas = ?
     `;
     const params = [id_liga];
 
     if (busqueda) {
-      sql += " AND e.nombre LIKE ?";
+      sql += " AND e.Nombre LIKE ?";
       params.push(`%${busqueda}%`);
     }
 
@@ -63,21 +62,19 @@ router.get("/:id_liga", async function (req, res, next) {
   }
 });
 
-
 router.post("/:id_liga", async function (req, res, next) {
   const { id_liga } = req.params;
   const { nombre, escudo } = req.body;
-  const id_usuario = req.user.id; 
+  const id_usuario = req.user.id;
 
   try {
-
     const [liga] = await db.query("SELECT * FROM ligas WHERE id = ?", [id_liga]);
     if (liga.length === 0) {
       return res.status(404).send("La liga no existe");
     }
 
     await db.query(
-      "INSERT INTO equipos (nombre, escudo, id_usuario, id_ligas) VALUES (?, ?, ?, ?)",
+      "INSERT INTO equipos (Nombre, Escudo, id_usuario, id_Ligas) VALUES (?, ?, ?, ?)",
       [nombre, escudo, id_usuario, id_liga]
     );
 
@@ -88,7 +85,6 @@ router.post("/:id_liga", async function (req, res, next) {
   }
 });
 
-
 router.put("/:id_liga/:equipo_id", async function (req, res, next) {
   const { id_liga, equipo_id } = req.params;
   const { nombre, escudo } = req.body;
@@ -97,8 +93,8 @@ router.put("/:id_liga/:equipo_id", async function (req, res, next) {
   try {
     const sql = `
       UPDATE equipos
-      SET nombre = ?, escudo = ?
-      WHERE id = ? AND id_ligas = ? AND id_usuario = ?
+      SET Nombre = ?, Escudo = ?
+      WHERE id = ? AND id_Ligas = ? AND id_usuario = ?
     `;
     const [result] = await db.query(sql, [nombre, escudo, equipo_id, id_liga, id_usuario]);
 
@@ -113,14 +109,13 @@ router.put("/:id_liga/:equipo_id", async function (req, res, next) {
   }
 });
 
-
 router.delete("/:id_liga/:equipo_id", async function (req, res, next) {
   const { id_liga, equipo_id } = req.params;
   const id_usuario = req.user.id;
 
   try {
     const [result] = await db.query(
-      "DELETE FROM equipos WHERE id = ? AND id_ligas = ? AND id_usuario = ?",
+      "DELETE FROM equipos WHERE id = ? AND id_Ligas = ? AND id_usuario = ?",
       [equipo_id, id_liga, id_usuario]
     );
 

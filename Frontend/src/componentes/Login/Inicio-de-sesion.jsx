@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 
-export default function InicioDeSesion({ onLogin, onIrARegistro }) {
+export default function InicioDeSesion({ onLogin, onIrARegistro, error }) {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -30,9 +30,11 @@ export default function InicioDeSesion({ onLogin, onIrARegistro }) {
           className="login-input"
         />
 
+        {/* Error */}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
         {/* Botones */}
         <div className="login-buttons">
-          {/* BOTÓN PRINCIPAL: CONFIRMAR LOGIN */}
           <button
             className="login-button"
             onClick={() => onLogin && onLogin({ usuario, contrasena })}
@@ -40,7 +42,6 @@ export default function InicioDeSesion({ onLogin, onIrARegistro }) {
             Iniciar sesión
           </button>
 
-          {/* BOTÓN SECUNDARIO: CAMBIAR A REGISTRO */}
           <button
             className="login-button"
             onClick={onIrARegistro}

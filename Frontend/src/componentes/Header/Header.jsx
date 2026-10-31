@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useEffect, useState } from "react";
-import logo from "../../assets/logo.png"; // ajustá la ruta
+ // ajustá la ruta
 
 export default function HeaderUsuario({ onSelectJornada, onSelectLiga }) {
   const [jornadas, setJornadas] = useState([]);
@@ -8,7 +8,7 @@ export default function HeaderUsuario({ onSelectJornada, onSelectLiga }) {
   useEffect(() => {
     const fetchJornadas = async () => {
       try {
-        const res = await fetch("http://localhost:9000/api/jornadas");
+        const res = await fetch("http://localhost:3000/api/jornadas");
         const data = await res.json();
         setJornadas(data);
       } catch (err) {

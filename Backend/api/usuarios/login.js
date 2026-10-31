@@ -28,19 +28,21 @@ router.post('/', function(req, res) {
 
         if (validarUsuario(pass, usuario.Contraseña)) {
 
-const token = generarToken(
-  TOKEN_SECRET,
-  40,
-  {
-    id: usuario.id,
-    nombre: usuario.Nombre,
-    rol: usuario.Rol
-  }
-);
+          const token = generarToken(
+            TOKEN_SECRET,
+            40,
+            {
+              id: usuario.id,
+              nombre: usuario.Nombre,
+              rol: usuario.Rol
+            }
+          );
 
+          // CAMBIO: ahora también se devuelve el rol
           res.status(200).json({
             status: "ok",
-            token
+            token,
+            rol: usuario.Rol
           });
 
         } else {

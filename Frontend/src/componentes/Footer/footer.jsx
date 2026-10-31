@@ -1,6 +1,4 @@
 import "./Footer.css";
-import logo from "../../assets/logo.png"; // ajustá la ruta
-
 export default function Footer() {
   return (
     <footer className="footer">

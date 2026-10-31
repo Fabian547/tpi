@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useEffect, useState } from "react";
-import logo from "../../assets/logo.png"; // ajustá la ruta
+ // ajustá la ruta
 
 export default function HeaderAdmin({
   onSelectJornada,
